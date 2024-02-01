@@ -2,13 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SpotifyService } from '../../core/services/spotify.service';
 import { ActivatedRoute } from '@angular/router';
-import { MatExpansionModule } from '@angular/material/expansion';
-import { MatChipsModule } from '@angular/material/chips';
-import { MatIconModule } from '@angular/material/icon';
 import { forkJoin, map } from 'rxjs';
-import { MatInputModule } from '@angular/material/input';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatDatepickerModule } from '@angular/material/datepicker';
 import { provideNativeDateAdapter } from '@angular/material/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
@@ -28,24 +22,23 @@ import {
   IArtist,
   ITrack,
 } from '../../core/interfaces/spotify.interface';
+import { CardDetailArtistComponent } from '../../core/components/card-detail-artist/card-detail-artist.component';
+import { CardTrackComponent } from '../../core/components/card-track/card-track.component';
+import { CardDetailAlbumComponent } from '../../core/components/card-detail-album/card-detail-album.component';
 
 @Component({
   selector: 'app-artist-detail',
   standalone: true,
   imports: [
     CommonModule,
-    MatExpansionModule,
-    MatChipsModule,
-    MatIconModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatIconModule,
     ReactiveFormsModule,
-    MatDatepickerModule,
     MatButtonModule,
     MatDialogModule,
     CardAlbumComponent,
     SkeletonComponent,
+    CardDetailArtistComponent,
+    CardTrackComponent,
+    CardDetailAlbumComponent,
   ],
   providers: [provideNativeDateAdapter()],
   templateUrl: './artist-detail.component.html',
@@ -76,6 +69,10 @@ export class ArtistDetailComponent implements OnInit {
       year: [new Date(), Validators.required],
       image: [''],
     });
+    this.loadInformation();
+  }
+
+  loadInformation() {
     this._activatedRoute.params.subscribe((params) => {
       const getArtistById = this._spotifyService.getSartistByid(params['id']);
       const getArtistTracks = this._spotifyService.getArtistAlbums(
@@ -104,38 +101,10 @@ export class ArtistDetailComponent implements OnInit {
         });
     });
   }
-  padTo2Digits(num: any) {
-    return num.toString().padStart(2, '0');
-  }
-  convertMsToTime(milliseconds: any) {
-    let seconds = Math.floor(milliseconds / 1000);
-    let minutes = Math.floor(seconds / 60);
-    let hours = Math.floor(minutes / 60);
-
-    seconds = seconds % 60;
-    minutes = minutes % 60;
-
-    hours = hours % 24;
-
-    return `${this.padTo2Digits(hours)}:${this.padTo2Digits(
-      minutes
-    )}:${this.padTo2Digits(seconds)}`;
-  }
-
   openDialog() {
     this.dialog.open(DialogComponent);
   }
   albumDetail(album: IAlbum) {
     this.selectAlbumDetail = album;
-  }
-  get getUrlImageArtist() {
-    return this.artist.images ? this.artist.images[0].url : '';
-  }
-  get getFollowerArtist() {
-    return this.artist.followers ? this.artist.followers : '';
-  }
-
-  get getImagesSelectedAlbum() {
-    return this.selectAlbumDetail.images[0].url;
   }
 }

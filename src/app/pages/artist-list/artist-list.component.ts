@@ -32,7 +32,6 @@ import { IArtist } from '../../core/interfaces/spotify.interface';
 export class ArtistListComponent {
   value: string = '';
   appearTable: boolean = false;
-  title = 'spotify-angular';
   displayedColumns: string[] = ['position', 'name', 'images', 'actions'];
 
   dataSource = new MatTableDataSource<IArtist>([]);

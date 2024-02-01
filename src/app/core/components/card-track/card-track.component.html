@@ -1,0 +1,16 @@
+<div class="card card-track p-4">
+  <p>{{ index + 1 }}-{{ track.name }}</p>
+  <div class="d-flex align-items-start justify-content-start mb-3">
+    Artistas:
+    <mat-chip-set>
+      @for (item of track.artists; track item.id) {
+      <div class="ms-2">
+        <mat-chip> {{ item.name }} </mat-chip>
+      </div>
+      }
+    </mat-chip-set>
+  </div>
+  <p class="mb-3">Duración: {{ convertMsToTime() }}</p>
+
+  <audio controls [src]="track.preview_url"></audio>
+</div>

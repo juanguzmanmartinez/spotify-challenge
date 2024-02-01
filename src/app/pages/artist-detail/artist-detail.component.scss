@@ -1,26 +1,10 @@
-audio {
-  height: 26px;
-  width: 100%;
-}
-.card-track {
-}
 .artist-container {
   height: calc(100vh - 6rem);
   @media (max-width: 768px) {
     height: 100%;
   }
 }
-.info-container {
-  .link-button {
-    background-color: #029745;
-    color: white;
-    font-weight: 500;
-    text-decoration: none;
-    padding: 8px 12px;
-    border-radius: 8px;
-    cursor: pointer;
-  }
-}
+
 .tracks-container {
   height: 100%;
   overflow-y: scroll;
@@ -58,15 +42,6 @@ audio {
   }
 }
 
-.card-album-detail {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  // min-height: 215px;
-  img {
-    width: 100%;
-  }
-}
 .select-album-container {
   display: grid;
   grid-template-columns: repeat(4, 1fr);

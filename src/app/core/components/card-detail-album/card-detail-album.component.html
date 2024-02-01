@@ -1,0 +1,25 @@
+<div class="card-album-detail d-flex flex-row card w-100 p-3 gap-4">
+  <div class="col-6">
+    @if (selectAlbumDetail) {
+    <img [src]="getImagesSelectedAlbum" alt="" />
+    }@else {
+    <app-skeleton [columns]="1" [rows]="1" />
+    }
+  </div>
+  <div class="col-6">
+    <p>{{ selectAlbumDetail.name }}</p>
+    <p>N° canciones: {{ selectAlbumDetail.total_tracks }}</p>
+    <p>Artistas</p>
+    <ul>
+      @for (item of selectAlbumDetail.artists; track $index) {
+
+      <li>{{ item.name }}</li>
+      }
+    </ul>
+    <p>feca de lanzamiento: {{ selectAlbumDetail.release_date }}</p>
+
+    <a class="link-button" [href]="selectAlbumDetail.uri"
+      >Reproducir en spotify</a
+    >
+  </div>
+</div>
