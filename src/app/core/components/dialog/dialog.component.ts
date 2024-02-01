@@ -12,6 +12,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { provideNativeDateAdapter } from '@angular/material/core';
 import { SpotifyServiceStore } from '../../store/spotify.service';
+import { IAlbum } from '../../interfaces/spotify.interface';
 
 @Component({
   selector: 'app-dialog',
@@ -36,8 +37,6 @@ export class DialogComponent implements OnInit {
     private _spotifyServiceStore: SpotifyServiceStore
   ) {}
   ngOnInit(): void {
-    //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
-    //Add 'implements OnInit' to the class.
     this.form = this.fb.group({
       title: ['', Validators.required],
       year: [new Date(), Validators.required],
@@ -46,11 +45,14 @@ export class DialogComponent implements OnInit {
   }
 
   onSubmit() {
-    const newAlbum = {
+    type AlbumPreview = Pick<IAlbum, 'name' | 'release_date' | 'images'>;
+
+    const newAlbum: AlbumPreview = {
       name: this.form.value.title,
-      year: '2012-01-12',
+      release_date: this.form.value.year,
       images: [{ url: this.form.value.image }],
     };
+
     this._spotifyServiceStore.setAlbum(newAlbum);
   }
 }

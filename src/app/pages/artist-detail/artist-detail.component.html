@@ -7,7 +7,7 @@
         <div>
           <h2>Detalle del artista</h2>
           @if (artist) {
-          <img [src]="artist?.images[0]?.url" class="img-fluid" alt="..." />
+          <img [src]="getUrlImageArtist" class="img-fluid" alt="..." />
 
           <h3>{{ artist.name }}</h3>
           <div class="col-12">
@@ -35,7 +35,7 @@
               aria-label="Example home icon"
               fontIcon="people"
             ></mat-icon>
-            <p>: {{ artist.followers.total }}</p>
+            <p>: {{ getFollowerArtist }}</p>
           </div>
           <div class="col-12">
             <a class="link-button" [href]="artist.uri"
@@ -94,11 +94,11 @@
     <div class="card row flex-row bg-white p-4">
       <div class="col-12 col-sm-6">
         <h2>Detalle del disco</h2>
-        @if ( albums ) {
+        @if ( albums && albums.length>0 ) {
         <div class="card-album-detail d-flex flex-row card w-100 p-3 gap-4">
           <div class="col-6">
-            @if (selectAlbumDetail.images) {
-            <img [src]="selectAlbumDetail?.images[0]?.url" alt="" />
+            @if (selectAlbumDetail) {
+            <img [src]="getImagesSelectedAlbum" alt="" />
             }@else {
             <app-skeleton [columns]="1" [rows]="1" />
             }

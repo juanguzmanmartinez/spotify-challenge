@@ -3,6 +3,7 @@ import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { SpotifyServiceStore } from '../../store/spotify.service';
+import { IAlbum } from '../../interfaces/spotify.interface';
 
 @Component({
   selector: 'app-card-album',
@@ -12,9 +13,9 @@ import { SpotifyServiceStore } from '../../store/spotify.service';
   styleUrl: './card-album.component.scss',
 })
 export class CardAlbumComponent implements OnInit {
-  @Input() album: any;
-  albums: any = [];
-  @Output() setAlbumDetail: EventEmitter<any> = new EventEmitter();
+  @Input() album!: IAlbum;
+  albums: IAlbum[] = [];
+  @Output() setAlbumDetail: EventEmitter<IAlbum> = new EventEmitter();
   ngOnInit(): void {
     this._spotifyServiceStore.getSelectedAlbums().subscribe((albums) => {
       this.albums = albums;
@@ -23,17 +24,19 @@ export class CardAlbumComponent implements OnInit {
   checked: boolean = false;
   constructor(private _spotifyServiceStore: SpotifyServiceStore) {}
   selectAlbum() {
-    let aaaa: any = [];
+    let albumsSelected: IAlbum[] = [];
 
     if (this.checked) {
-      aaaa = [...this.albums, this.album];
+      albumsSelected = [...this.albums, this.album];
     } else {
-      aaaa = this.albums.filter((album: any) => album.id !== this.album.id);
+      albumsSelected = this.albums.filter(
+        (album: any) => album.id !== this.album.id
+      );
     }
-    this._spotifyServiceStore.setSelectedAlbums(aaaa);
+    this._spotifyServiceStore.setSelectedAlbums(albumsSelected);
   }
 
   selectAlbumDetail() {
-    this.setAlbumDetail.emit({ album: this.album });
+    this.setAlbumDetail.emit(this.album);
   }
 }

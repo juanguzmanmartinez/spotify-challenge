@@ -1,5 +1,5 @@
 export const environment = {
   URL_BASE: 'https://api.spotify.com/v1',
   API_TOKEN:
-    'BQCNlgGZsEQ6DCWl6j07V_fM9donrq7bzpggO6jaQvHqcDWtk33n4ZUwI7YoxOOmCt6S4P9huJC8WH41k8eyogBl9DOJsmIJjNGX9APdHENZKmxvyxE',
+    'BQAq1WT6wYyZQbp9pIx5aA7BEob5j4mJEkyr7BpfWYST-2hK7YhoiWzhUi8jl8O9EPrSW2V3_teTPRLFSpqvPrR9AmATdlOrpoLtMx11K8P9G6835H4',
 };

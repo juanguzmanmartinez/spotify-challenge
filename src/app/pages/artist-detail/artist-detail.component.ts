@@ -23,6 +23,11 @@ import { DialogComponent } from '../../core/components/dialog/dialog.component';
 import { SpotifyServiceStore } from '../../core/store/spotify.service';
 import { CardAlbumComponent } from '../../core/components/card-album/card-album.component';
 import { SkeletonComponent } from '../../core/components/skeleton/skeleton.component';
+import {
+  IAlbum,
+  IArtist,
+  ITrack,
+} from '../../core/interfaces/spotify.interface';
 
 @Component({
   selector: 'app-artist-detail',
@@ -47,13 +52,13 @@ import { SkeletonComponent } from '../../core/components/skeleton/skeleton.compo
   styleUrl: './artist-detail.component.scss',
 })
 export class ArtistDetailComponent implements OnInit {
-  panelOpenState = false;
-  artist: any = null;
-  albums: any = [];
-  tracks: any = [];
-  selectedAlbums: any = [];
-  miFormulario!: FormGroup;
-  selectAlbumDetail: any = {};
+  public panelOpenState = false;
+  public artist!: IArtist;
+  public albums: IAlbum[] = [];
+  public tracks: ITrack[] = [];
+  public selectedAlbums: IAlbum[] = [];
+  public miFormulario!: FormGroup;
+  public selectAlbumDetail!: IAlbum;
   constructor(
     private _spotifyService: SpotifyService,
     private _activatedRoute: ActivatedRoute,
@@ -69,7 +74,7 @@ export class ArtistDetailComponent implements OnInit {
     this.miFormulario = this.fb.group({
       title: ['', Validators.required],
       year: [new Date(), Validators.required],
-      image: [''], // Valor por defecto
+      image: [''],
     });
     this._activatedRoute.params.subscribe((params) => {
       const getArtistById = this._spotifyService.getSartistByid(params['id']);
@@ -116,19 +121,21 @@ export class ArtistDetailComponent implements OnInit {
       minutes
     )}:${this.padTo2Digits(seconds)}`;
   }
-  onSubmit() {
-    const newAlbum = {
-      name: this.miFormulario.value.title,
-      year: '2012-01-12',
-      images: [{ url: this.miFormulario.value.image }],
-    };
-    this.albums.push(newAlbum);
-  }
 
   openDialog() {
     this.dialog.open(DialogComponent);
   }
-  albumDetail(e: any) {
-    this.selectAlbumDetail = e.album;
+  albumDetail(album: IAlbum) {
+    this.selectAlbumDetail = album;
+  }
+  get getUrlImageArtist() {
+    return this.artist.images ? this.artist.images[0].url : '';
+  }
+  get getFollowerArtist() {
+    return this.artist.followers ? this.artist.followers : '';
+  }
+
+  get getImagesSelectedAlbum() {
+    return this.selectAlbumDetail.images[0].url;
   }
 }
