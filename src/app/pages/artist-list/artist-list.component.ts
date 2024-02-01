@@ -46,7 +46,7 @@ export class ArtistListComponent {
     this.dataSource.paginator = this.paginator;
   }
   searchArtists() {
-    this._spotifyService.genericGet(this.value).subscribe((res) => {
+    this._spotifyService.getArtistList(this.value).subscribe((res) => {
       this.appearTable = true;
       this.dataSource.data = res.artists.items.map(
         (item: IArtist, index: number) => {

@@ -1,7 +1,7 @@
 <div class="card card-track p-4">
-  <p>{{ index + 1 }}-{{ track.name }}</p>
-  <div class="d-flex align-items-start justify-content-start mb-3">
-    Artistas:
+  <p class="text-title-3">{{ index + 1 }}-{{ track.name }}</p>
+  <div class="d-flex align-items-start justify-content-start mb-3 mt-3">
+    <span class="text-title-4"> Artistas: </span>
     <mat-chip-set>
       @for (item of track.artists; track item.id) {
       <div class="ms-2">
@@ -10,7 +10,8 @@
       }
     </mat-chip-set>
   </div>
-  <p class="mb-3">Duración: {{ convertMsToTime() }}</p>
-
+  <p class="mb-3 text-title-4">
+    Duración: <span class="text-label ms-1">{{ convertMsToTime() }}</span>
+  </p>
   <audio controls [src]="track.preview_url"></audio>
 </div>

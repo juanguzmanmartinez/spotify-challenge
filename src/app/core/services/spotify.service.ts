@@ -9,7 +9,7 @@ export class SpotifyService {
   private readonly url_base = environment.URL_BASE;
   constructor(private http: HttpClient) {}
 
-  public genericGet(value: string): Observable<any> {
+  public getArtistList(value: string): Observable<any> {
     return this.http.get<any>(`${this.url_base}/search`, {
       params: {
         type: 'artist',
@@ -19,7 +19,7 @@ export class SpotifyService {
     });
   }
 
-  public getSartistByid(id: string): Observable<any> {
+  public getArtistByid(id: string): Observable<any> {
     return this.http.get<any>(`${this.url_base}/artists/${id}`);
   }
 

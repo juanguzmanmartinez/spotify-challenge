@@ -74,7 +74,7 @@ export class ArtistDetailComponent implements OnInit {
 
   loadInformation() {
     this._activatedRoute.params.subscribe((params) => {
-      const getArtistById = this._spotifyService.getSartistByid(params['id']);
+      const getArtistById = this._spotifyService.getArtistByid(params['id']);
       const getArtistTracks = this._spotifyService.getArtistAlbums(
         params['id']
       );

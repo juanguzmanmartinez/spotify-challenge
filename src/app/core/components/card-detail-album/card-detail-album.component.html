@@ -7,19 +7,28 @@
     }
   </div>
   <div class="col-6">
-    <p>{{ selectAlbumDetail.name }}</p>
-    <p>N° canciones: {{ selectAlbumDetail.total_tracks }}</p>
-    <p>Artistas</p>
+    <p class="text-title-1">{{ selectAlbumDetail.name }}</p>
+    <p class="text-title-4 mt-3">
+      N° canciones:
+      <span class="ms-1 text-label">
+        {{ selectAlbumDetail.total_tracks }}
+      </span>
+    </p>
+    <p class="text-title-4 mt-3">Artistas</p>
     <ul>
       @for (item of selectAlbumDetail.artists; track $index) {
 
       <li>{{ item.name }}</li>
       }
     </ul>
-    <p>feca de lanzamiento: {{ selectAlbumDetail.release_date }}</p>
-
-    <a class="link-button" [href]="selectAlbumDetail.uri"
-      >Reproducir en spotify</a
-    >
+    <p class="text-title-4 mt-3">
+      feca de lanzamiento:
+      <span class="ms-1 text-label"> {{ selectAlbumDetail.release_date }}</span>
+    </p>
+    <div class="mt-5">
+      <a class="link-button" [href]="selectAlbumDetail.uri"
+        >Reproducir en spotify</a
+      >
+    </div>
   </div>
 </div>

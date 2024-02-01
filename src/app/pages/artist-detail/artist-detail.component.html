@@ -5,7 +5,7 @@
         class="info-container d-flex flex-column justify-content-between h-100 col-12 p-3 col-sm-4"
       >
         <div>
-          <h2>Detalle del artista</h2>
+          <h2 class="text-title">Detalle del artista</h2>
           @if (artist) {
           <app-card-detail-artist [artist]="artist" />
 
@@ -22,7 +22,7 @@
       <div
         class="tracks-container col-12 col-sm-4 d-flex flex-column gap-3 p-3"
       >
-        <h2>Top 10 canciones</h2>
+        <h2 class="text-title">Top 10 canciones</h2>
         @for (track of tracks; track $index) {
         <app-card-track [track]="track" [index]="$index" />
         }@empty {
@@ -30,7 +30,7 @@
         }
       </div>
       <div class="albums-container col-12 col-sm-4 p-3">
-        <h2>Top Albums</h2>
+        <h2 class="text-title">Top Albums</h2>
         @for (item of albums; track $index) {
         <app-card-album (setAlbumDetail)="albumDetail($event)" [album]="item" />
 
@@ -44,41 +44,15 @@
 
     <div class="card row flex-row bg-white p-4">
       <div class="col-12 col-sm-6">
-        <h2>Detalle del disco</h2>
+        <h2 class="text-title">Detalle del disco</h2>
         @if ( albums && albums.length>0 ) {
-        <!-- <div class="card-album-detail d-flex flex-row card w-100 p-3 gap-4">
-          <div class="col-6">
-            @if (selectAlbumDetail) {
-            <img [src]="getImagesSelectedAlbum" alt="" />
-            }@else {
-            <app-skeleton [columns]="1" [rows]="1" />
-            }
-          </div>
-          <div class="col-6">
-            <p>{{ selectAlbumDetail.name }}</p>
-            <p>N° canciones: {{ selectAlbumDetail.total_tracks }}</p>
-            <p>Artistas</p>
-            <ul>
-              @for (item of selectAlbumDetail.artists; track $index) {
-
-              <li>{{ item.name }}</li>
-              }
-            </ul>
-            <p>feca de lanzamiento: {{ selectAlbumDetail.release_date }}</p>
-
-            <a class="link-button" [href]="selectAlbumDetail.uri"
-              >Reproducir en spotify</a
-            >
-          </div>
-        </div> -->
-
         <app-card-detail-album [selectAlbumDetail]="selectAlbumDetail" />
         }@else {
         <app-skeleton [columns]="1" [rows]="1" />
         }
       </div>
       <div class="col-12 col-sm-6 h-100">
-        <h2>Discos seleccionados</h2>
+        <h2 class="text-title">Discos seleccionados</h2>
         <div class="select-album-container card">
           @for (item of selectedAlbums; track $index) {
 

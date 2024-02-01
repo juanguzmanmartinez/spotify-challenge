@@ -11,7 +11,21 @@ body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
-
+h1,
+h2,
+h3,
+h3,
+h4,
+h6 {
+  line-height: 40px;
+}
+p {
+  margin: 0 !important;
+  text-wrap: wrap;
+}
+.mc-1 {
+  margin-bottom: -4px;
+}
 .link-button {
   background-color: #029745;
   color: white;
@@ -20,4 +34,46 @@ body {
   padding: 8px 12px;
   border-radius: 8px;
   cursor: pointer;
+}
+
+.text-title-1 {
+  font-size: 28px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+}
+
+.text-title-2 {
+  font-size: 24px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+}
+
+.text-title-3 {
+  font-size: 20px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+}
+.text-title-4 {
+  font-size: 18px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+}
+.text-label {
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  font-weight: 400;
+}
+
+.text-title {
+  font-size: 32px !important;
+  font-weight: bold !important;
+  text-decoration: underline;
+  @media (max-width: 768px) {
+    font-size: 24px;
+  }
 }

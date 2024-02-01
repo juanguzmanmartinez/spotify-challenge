@@ -17,6 +17,6 @@ export class CardDetailArtistComponent {
     return this.artist.images ? this.artist.images[0].url : '';
   }
   get getFollowerArtist() {
-    return this.artist.followers ? this.artist.followers : '';
+    return this.artist.followers ? this.artist.followers.total : '';
   }
 }

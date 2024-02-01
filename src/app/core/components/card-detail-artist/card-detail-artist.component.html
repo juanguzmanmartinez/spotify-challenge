@@ -1,7 +1,7 @@
 <img [src]="getUrlImageArtist" class="img-fluid" alt="..." />
 
-<h3>{{ artist.name }}</h3>
-<div class="col-12">
+<p class="text-title-1 mt-4">{{ artist.name }}</p>
+<div class="col-12 mt-3">
   <mat-chip-set>
     @for (item of artist.genres; track $index) {
     <mat-chip class=""> {{ item }} </mat-chip>
@@ -9,25 +9,32 @@
   </mat-chip-set>
 </div>
 
-<div class="col-12 d-flex aling-items-center">
-  <p>Popularidad</p>
-  <mat-icon
-    aria-hidden="false"
-    aria-label="Example home icon"
-    fontIcon="star"
-  ></mat-icon>
-  <p>: {{ artist.popularity }}</p>
+<div class="col-12 d-flex aling-items-center mt-3">
+  <p class="text-title-3">
+    Popularidad
+    <mat-icon
+      aria-hidden="false"
+      aria-label="Example home icon"
+      fontIcon="star"
+      class="mc-1"
+    ></mat-icon>
+  </p>
+
+  <span class="text-label ms-1">: {{ artist.popularity }}</span>
 </div>
 
-<div class="col-12 d-flex aling-items-center">
-  <p>Seguidores</p>
-  <mat-icon
-    aria-hidden="false"
-    aria-label="Example home icon"
-    fontIcon="people"
-  ></mat-icon>
-  <p>: {{ getFollowerArtist }}</p>
+<div class="col-12 d-flex aling-items-center mt-3">
+  <p class="text-title-3">
+    Seguidores
+    <mat-icon
+      aria-hidden="false"
+      aria-label="Example home icon"
+      fontIcon="people"
+      class="mc-1"
+    ></mat-icon>
+  </p>
+  <span class="text-label ms-1">: {{ getFollowerArtist }}</span>
 </div>
-<div class="col-12">
+<div class="col-12 mt-5">
   <a class="link-button" [href]="artist.uri">Escucha el artista en Spotify </a>
 </div>
