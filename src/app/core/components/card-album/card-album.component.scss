@@ -1,0 +1,25 @@
+.item-album {
+  height: 100%;
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  &-image {
+    height: 100%;
+    img {
+      height: 100%;
+      max-width: 100%;
+    }
+  }
+  &-info {
+    // width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    padding-top: 4px;
+    p {
+      margin-bottom: 0;
+    }
+  }
+}

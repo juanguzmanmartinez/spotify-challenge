@@ -1,0 +1,95 @@
+audio {
+  height: 26px;
+  width: 100%;
+}
+.card-track {
+}
+.artist-container {
+  height: calc(100vh - 6rem);
+  @media (max-width: 768px) {
+    height: 100%;
+  }
+}
+.info-container {
+  .link-button {
+    background-color: #029745;
+    color: white;
+    font-weight: 500;
+    text-decoration: none;
+    padding: 8px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+}
+.tracks-container {
+  height: 100%;
+  overflow-y: scroll;
+}
+
+.albums-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow-y: scroll;
+  &__item {
+    height: 10%;
+    padding: 8px;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    &-image {
+      height: 100%;
+      img {
+        height: 100%;
+        max-width: 100%;
+      }
+    }
+    &-info {
+      // width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: space-between;
+      flex-direction: column;
+      padding-top: 4px;
+      p {
+        margin-bottom: 0;
+      }
+    }
+  }
+}
+
+.card-album-detail {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  // min-height: 215px;
+  img {
+    width: 100%;
+  }
+}
+.select-album-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  position: relative;
+  height: 100%;
+  padding: 16px;
+  @media (max-width: 768px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .select-card-album {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    img {
+      width: 100%;
+    }
+  }
+  button {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    width: 24px;
+    height: 24px;
+  }
+}

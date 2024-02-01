@@ -1,0 +1,23 @@
+<div class="row item-album">
+  <div class="col-2">
+    <mat-checkbox
+      (change)="selectAlbum()"
+      class="example-margin"
+      [(ngModel)]="checked"
+    ></mat-checkbox>
+  </div>
+  <div class="col-3 item-album-image">
+    <img [src]="album.images[0].url" alt="" />
+  </div>
+  <div class="col-7 albums-container__item-info">
+    <p>{{ album.name }}</p>
+    <button
+      (click)="selectAlbumDetail()"
+      class="w-100"
+      mat-raised-button
+      color="accent"
+    >
+      Ver detalle del albúm
+    </button>
+  </div>
+</div>

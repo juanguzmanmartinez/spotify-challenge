@@ -1,0 +1,36 @@
+.skeleton-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.skeleton-row {
+  display: flex;
+  animation: fadeIn 1s ease-in-out infinite;
+}
+
+.skeleton-column {
+  flex: 1;
+  height: 20px;
+  background-color: #ddd;
+  margin: 2px;
+  animation: wave 1s ease-in-out infinite;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0.5;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes wave {
+  0%,
+  100% {
+    transform: scaleY(1);
+  }
+  50% {
+    transform: scaleY(1.5);
+  }
+}

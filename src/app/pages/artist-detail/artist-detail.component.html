@@ -1,0 +1,139 @@
+<div class="bg-dark">
+  <div class="container py-5">
+    <div class="artist-container row p-3 card">
+      <div
+        class="info-container d-flex flex-column justify-content-between h-100 col-12 p-3 col-sm-4"
+      >
+        <div>
+          <h2>Detalle del artista</h2>
+          @if (artist) {
+          <img [src]="artist?.images[0]?.url" class="img-fluid" alt="..." />
+
+          <h3>{{ artist.name }}</h3>
+          <div class="col-12">
+            <mat-chip-set>
+              @for (item of artist.genres; track $index) {
+              <mat-chip class=""> {{ item }} </mat-chip>
+              }
+            </mat-chip-set>
+          </div>
+
+          <div class="col-12 d-flex aling-items-center">
+            <p>Popularidad</p>
+            <mat-icon
+              aria-hidden="false"
+              aria-label="Example home icon"
+              fontIcon="star"
+            ></mat-icon>
+            <p>: {{ artist.popularity }}</p>
+          </div>
+
+          <div class="col-12 d-flex aling-items-center">
+            <p>Seguidores</p>
+            <mat-icon
+              aria-hidden="false"
+              aria-label="Example home icon"
+              fontIcon="people"
+            ></mat-icon>
+            <p>: {{ artist.followers.total }}</p>
+          </div>
+          <div class="col-12">
+            <a class="link-button" [href]="artist.uri"
+              >Escucha el artista en Spotify
+            </a>
+          </div>
+          }@else {
+          <app-skeleton [columns]="1" [rows]="1" />
+
+          }
+        </div>
+        <div class="">
+          <button (click)="openDialog()" mat-raised-button color="accent">
+            Agregar un nuevo albúm
+          </button>
+        </div>
+      </div>
+      <div
+        class="tracks-container col-12 col-sm-4 d-flex flex-column gap-3 p-3"
+      >
+        <h2>Top 10 canciones</h2>
+        @for (item of tracks; track $index) {
+        <div class="card card-track p-4">
+          <p>{{ $index + 1 }}-{{ item.name }}</p>
+          <div class="d-flex align-items-start justify-content-start mb-3">
+            Artistas:
+            <mat-chip-set>
+              @for (item2 of item.artists; track item2.id) {
+              <div class="ms-2">
+                <mat-chip> {{ item2.name }} </mat-chip>
+              </div>
+              }
+            </mat-chip-set>
+          </div>
+          <p class="mb-3">Duración: {{ convertMsToTime(item.duration_ms) }}</p>
+
+          <audio controls [src]="item.preview_url"></audio>
+        </div>
+        }@empty {
+        <app-skeleton [columns]="1" [rows]="6" />
+        }
+      </div>
+      <div class="albums-container col-12 col-sm-4 p-3">
+        <h2>Top Albums</h2>
+        @for (item of albums; track $index) {
+        <app-card-album (setAlbumDetail)="albumDetail($event)" [album]="item" />
+
+        }@empty {
+        <app-skeleton [columns]="1" [rows]="6" />
+        }
+      </div>
+    </div>
+
+    <hr />
+
+    <div class="card row flex-row bg-white p-4">
+      <div class="col-12 col-sm-6">
+        <h2>Detalle del disco</h2>
+        @if ( albums ) {
+        <div class="card-album-detail d-flex flex-row card w-100 p-3 gap-4">
+          <div class="col-6">
+            @if (selectAlbumDetail.images) {
+            <img [src]="selectAlbumDetail?.images[0]?.url" alt="" />
+            }@else {
+            <app-skeleton [columns]="1" [rows]="1" />
+            }
+          </div>
+          <div class="col-6">
+            <p>{{ selectAlbumDetail.name }}</p>
+            <p>N° canciones: {{ selectAlbumDetail.total_tracks }}</p>
+            <p>Artistas</p>
+            <ul>
+              @for (item of selectAlbumDetail.artists; track $index) {
+
+              <li>{{ item.name }}</li>
+              }
+            </ul>
+            <p>feca de lanzamiento: {{ selectAlbumDetail.release_date }}</p>
+
+            <a [href]="selectAlbumDetail.uri">Reproducir en spotify</a>
+          </div>
+        </div>
+        }@else {
+        <app-skeleton [columns]="1" [rows]="1" />
+        }
+      </div>
+      <div class="col-12 col-sm-6 h-100">
+        <h2>Discos seleccionados</h2>
+        <div class="select-album-container card">
+          @for (item of selectedAlbums; track $index) {
+
+          <div class="select-card-album card p-2">
+            <p>{{ item.name }}</p>
+            <img [src]="item.images[0].url" alt="" />
+          </div>
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
